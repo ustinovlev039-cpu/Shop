@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "pet-project"
+version = "0.1.0"
+description = ""
+authors = ["recently_was_good <ustinovlev039@gmail.com>"]
+readme = "README.md"
+packages = [{include = "pet_project"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.group.dev.dependencies]
+isort = "^7.0.0"
+flake8 = "^7.3.0"
+black = "^26.1.0"
+mypy = "^1.19.1"
+pytest = "^9.0.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
