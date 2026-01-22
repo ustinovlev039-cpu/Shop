@@ -1,4 +1,4 @@
-from src.shop import Category, Product
+from src.shop import Category
 
 
 def test_prod1(product1):
@@ -23,15 +23,15 @@ def test_prod3(product3):
 
 
 def test_category1(category1, product1, product2):
-    assert category1.product[1] == product2
-    assert category1.product[0] == product1
-    assert len(category1.product) == 2
+    assert category1.products[1] == product2
+    assert category1.products[0] == product1
+    assert len(category1.products) == 2
 
 
 def test_category2(category2, product3):
-    assert category2.product[0] == product3
+    assert category2.products[0] == product3
 
 
 def test_count(category1, category2):
     assert Category.count_category == 2
-    assert Category.count_product == 3
+    assert Category.count_products == 3
