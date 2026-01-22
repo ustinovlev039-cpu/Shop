@@ -31,4 +31,4 @@ def category2(product3):
 @pytest.fixture(autouse=True)
 def reset_count():
     Category.count_category = 0
-    Category.count_product = 0
+    Category.count_products = 0
