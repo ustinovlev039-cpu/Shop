@@ -5,27 +5,51 @@ from src.shop import Category, Product
 
 @pytest.fixture
 def product1():
-    return Product("LG", "Телевизор", 50_000, 5)
+    return Product(
+        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
+    )
 
 
 @pytest.fixture
 def product2():
-    return Product("Samsung", "Монитор", 100_000, 15)
+    return Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
 
 
 @pytest.fixture
 def product3():
-    return Product("Apple", "Ipad", 78_000, 45)
+    return Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
 
 
 @pytest.fixture
-def category1(product1, product2):
-    return Category("Электроника", "Техника для дома", [product1, product2])
+def category1(product1, product2, product3):
+    return Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        [product1, product2, product3],
+    )
 
 
 @pytest.fixture
-def category2(product3):
-    return Category("Телефоны", "Личного пользования", [product3])
+def product4():
+    return Product("55 QLED 4K", "Фоновая подсветка", 123000.0, 7)
+
+
+@pytest.fixture
+def category2(product1, product2, product3, product4):
+    return Category(
+        "Телефоны", "Личного пользования", [product1, product2, product3, product4]
+    )
+
+
+@pytest.fixture
+def product():
+    data = {
+        "product_name": "Test",
+        "product_description": "Desc",
+        "price": 100.0,
+        "quantity": 2,
+    }
+    return data
 
 
 @pytest.fixture(autouse=True)

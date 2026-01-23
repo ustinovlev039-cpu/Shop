@@ -1,37 +1,35 @@
-from src.shop import Category
+import pytest
 
 
-def test_prod1(product1):
-    assert product1.product_name == "LG"
-    assert product1.product_description == "Телевизор"
-    assert product1.quantity == 5
-    assert product1.price == 50_000
+def test_price(product1):
+    old = product1.price
+    with pytest.raises(ValueError):
+        product1.price = 0
+    assert product1.price == old
+
+    with pytest.raises(ValueError):
+        product1.price = -100
+    assert product1.price == old
 
 
-def test_prod2(product2):
-    assert product2.product_name == "Samsung"
-    assert product2.product_description == "Монитор"
-    assert product2.price == 100_000
-    assert product2.quantity == 15
+def test_category_product(category2):
+    text = category2.products
+
+    assert "Samsung Galaxy S23 Ultra, 180000.0. Остаток: 5" in text
+    assert "Iphone 15, 210000.0. Остаток: 8" in text
+    assert "Xiaomi Redmi Note 11, 31000.0. Остаток: 14" in text
+    assert "55 QLED 4K, 123000.0. Остаток: 7" in text
 
 
-def test_prod3(product3):
-    assert product3.product_name == "Apple"
-    assert product3.product_description == "Ipad"
-    assert product3.price == 78_000
-    assert product3.quantity == 45
+def test_add_category(category1, category2, product4):
+    category1.add_product(product4)
+    assert category1.products == category2.products
 
 
-def test_category1(category1, product1, product2):
-    assert category1.products[1] == product2
-    assert category1.products[0] == product1
-    assert len(category1.products) == 2
+def test_new_product(product1, product):
+    p = product1.new_product(None, product)
 
-
-def test_category2(category2, product3):
-    assert category2.products[0] == product3
-
-
-def test_count(category1, category2):
-    assert Category.count_category == 2
-    assert Category.count_products == 3
+    assert p.product_name == "Test"
+    assert p.product_description == "Desc"
+    assert p.price == 100.0
+    assert p.quantity == 2
