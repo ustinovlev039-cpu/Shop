@@ -56,3 +56,15 @@ def product():
 def reset_count():
     Category.count_category = 0
     Category.count_products = 0
+
+@pytest.fixture
+def conclusion_product_str():
+    return "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
+
+@pytest.fixture
+def conclusion_product_add():
+    return 2580000.0
+
+@pytest.fixture
+def conclusion_category_str():
+    return "Смартфоны, количество продуктов: 27 шт."

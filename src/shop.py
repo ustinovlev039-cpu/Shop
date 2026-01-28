@@ -18,6 +18,13 @@ class Product:
         self._price = price
         self.quantity = quantity
 
+
+    def __str__(self):
+        return f"{self.product_name}, {self._price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        return self._price * self.quantity + other._price * other.quantity
+
     @property
     def price(self):
         return self._price
@@ -72,17 +79,38 @@ class Category:
 
         Category.count_category += 1
 
+    def __str__(self):
+        total_quantity = sum(p.quantity for p in self.__products)
+        return f"{self.category_name}, количество продуктов: {total_quantity} шт."
+
     def add_product(self, product: Product):
         self.__products.append(product)
         Category.count_products += 1
 
     @property
     def products(self):
-        product_list_output = list()
-        for product in self.__products:
-            line = (
-                f"{product.product_name}, {product.price}. Остаток: {product.quantity}"
-            )
-            product_list_output.append(line)
+        return "\n".join(str(p) for p in self.__products)
 
-        return "\n".join(product_list_output)
+
+if __name__ == "__main__":
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+
+    print(str(product1))
+    print(str(product2))
+    print(str(product3))
+
+    category1 = Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        [product1, product2, product3]
+    )
+
+    print(str(category1))
+
+    print(category1.products)
+
+    print(product1 + product2)
+    print(product1 + product3)
+    print(product2 + product3)
