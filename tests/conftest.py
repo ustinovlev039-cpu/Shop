@@ -1,6 +1,6 @@
 import pytest
 
-from src.shop import Category, Product
+from src.shop import Category, LawnGrass, Product, Smartphone
 
 
 @pytest.fixture
@@ -71,3 +71,64 @@ def conclusion_product_add():
 @pytest.fixture
 def conclusion_category_str():
     return "Смартфоны, количество продуктов: 27 шт."
+
+
+@pytest.fixture
+def smartphone_1():
+    return Smartphone(
+        "Samsung Galaxy S23 Ultra",
+        "256GB, Серый цвет, 200MP камера",
+        180000.0,
+        5,
+        95.5,
+        "S23 Ultra",
+        256,
+        "Серый",
+    )
+
+
+@pytest.fixture
+def smartphone_2():
+    return Smartphone(
+        "Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space"
+    )
+
+
+@pytest.fixture
+def grass_1():
+    return LawnGrass(
+        "Газонная трава",
+        "Элитная трава для газона",
+        500.0,
+        20,
+        "Россия",
+        "7 дней",
+        "Зеленый",
+    )
+
+
+@pytest.fixture
+def grass_2():
+    return LawnGrass(
+        "Газонная трава 2",
+        "Выносливая трава",
+        450.0,
+        15,
+        "США",
+        "5 дней",
+        "Темно-зеленый",
+    )
+
+
+@pytest.fixture
+def category_smartphone(smartphone_1, smartphone_2):
+    return Category(
+        "Смартфоны", "Высокотехнологичные смартфоны", [smartphone_1, smartphone_2]
+    )
+
+
+@pytest.fixture
+def category_grass(grass_1, grass_2):
+    return Category(
+        "Газонная трава", "Различные виды газонной травы", [grass_1, grass_2]
+    )

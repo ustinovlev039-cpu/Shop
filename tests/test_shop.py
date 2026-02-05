@@ -1,6 +1,6 @@
 import pytest
 
-from src.shop import Category, Product
+from src.shop import Product
 
 
 def test_price(product1):
@@ -50,3 +50,66 @@ def test_add(product1, product2, conclusion_product_add):
 
 def test_category_str(category1, conclusion_category_str):
     assert str(category1) == conclusion_category_str
+
+
+def test_smartphone_1(smartphone_1):
+    text = smartphone_1
+    assert text.product_name == "Samsung Galaxy S23 Ultra"
+    assert text.product_description == "256GB, Серый цвет, 200MP камера"
+    assert text.price == 180000.0
+    assert text.quantity == 5
+    assert text.efficiency == 95.5
+    assert text.model == "S23 Ultra"
+    assert text.memory == 256
+    assert text.color == "Серый"
+
+
+def test_smartphone_2(smartphone_2):
+    text = smartphone_2
+    assert text.product_name == "Iphone 15"
+    assert text.product_description == "512GB, Gray space"
+    assert text.price == 210000.0
+    assert text.quantity == 8
+    assert text.efficiency == 98.2
+    assert text.model == "15"
+    assert text.memory == 512
+    assert text.color == "Gray space"
+
+
+def test_grass_1(grass_1):
+    text = grass_1
+    assert text.product_name == "Газонная трава"
+    assert text.product_description == "Элитная трава для газона"
+    assert text.price == 500.0
+    assert text.quantity == 20
+    assert text.country == "Россия"
+    assert text.germination_period == "7 дней"
+    assert text.color == "Зеленый"
+
+
+def test_grass_2(grass_2):
+    text = grass_2
+    assert text.product_name == "Газонная трава 2"
+    assert text.product_description == "Выносливая трава"
+    assert text.price == 450.0
+    assert text.quantity == 15
+    assert text.country == "США"
+    assert text.germination_period == "5 дней"
+    assert text.color == "Темно-зеленый"
+
+
+def test_category_smartphone(category_smartphone):
+    text = category_smartphone
+    assert text.category_name == "Смартфоны"
+    assert text.category_description == "Высокотехнологичные смартфоны"
+
+
+def test_category_grass(category_grass):
+    text = category_grass
+    assert text.category_name == "Газонная трава"
+    assert text.category_description == "Различные виды газонной травы"
+
+
+def test_error(category_smartphone):
+    with pytest.raises(TypeError):
+        category_smartphone.add_product("Не то добавление еееееееее!!!!!")
