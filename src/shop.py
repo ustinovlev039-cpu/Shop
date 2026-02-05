@@ -22,6 +22,8 @@ class Product:
         return f"{self.product_name}, {self._price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
+        if type(self) is not type(other):
+            raise TypeError
         return self._price * self.quantity + other._price * other.quantity
 
     @property
@@ -48,6 +50,9 @@ class Product:
     @classmethod
     def new_product(cls, product_list, product_data):
         new_prod = cls(**product_data)
+
+        if not isinstance(new_prod, Product):
+            raise TypeError
 
         if product_list is None:
             return new_prod
@@ -83,6 +88,9 @@ class Category:
         return f"{self.category_name}, количество продуктов: {total_quantity} шт."
 
     def add_product(self, product: Product):
+        if not isinstance(product, Product):
+            raise TypeError("Не то добавление еееееееее!!!!!")
+
         self.__products.append(product)
         Category.count_products += 1
 
@@ -109,27 +117,39 @@ class Iterator:
             raise StopIteration
 
 
-if __name__ == "__main__":
-    product1 = Product(
-        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
-    )
-    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
-    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+class Smartphone(Product):
 
-    print(str(product1))
-    print(str(product2))
-    print(str(product3))
+    def __init__(
+        self,
+        product_name,
+        product_description,
+        price,
+        quantity,
+        efficiency,
+        model,
+        memory,
+        color,
+    ):
+        super().__init__(product_name, product_description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
 
-    category1 = Category(
-        "Смартфоны",
-        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
-        [product1, product2, product3],
-    )
 
-    print(str(category1))
+class LawnGrass(Product):
 
-    print(category1.products)
-
-    print(product1 + product2)
-    print(product1 + product3)
-    print(product2 + product3)
+    def __init__(
+        self,
+        product_name,
+        product_description,
+        price,
+        quantity,
+        country,
+        germination_period,
+        color,
+    ):
+        super().__init__(product_name, product_description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
