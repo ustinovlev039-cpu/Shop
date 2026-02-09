@@ -1,4 +1,8 @@
-class Product:
+from src.abstaracts import BaseTask
+from src.micsim import MixsimLog
+
+
+class Product(MixsimLog, BaseTask):
     """
     Класс для представления продукта в магазин
     """
@@ -13,10 +17,12 @@ class Product:
         :param price:
         :param quantity:
         """
+
         self.product_name = product_name
         self.product_description = product_description
         self._price = price
         self.quantity = quantity
+        super().__init__(product_name, product_description, price, quantity)
 
     def __str__(self):
         return f"{self.product_name}, {self._price} руб. Остаток: {self.quantity} шт."
