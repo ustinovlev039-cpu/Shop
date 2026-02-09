@@ -132,3 +132,15 @@ def category_grass(grass_1, grass_2):
     return Category(
         "Газонная трава", "Различные виды газонной травы", [grass_1, grass_2]
     )
+
+
+@pytest.fixture
+def conclusion_miksim_product_1():
+    return Product(
+        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
+    )
+
+
+@pytest.fixture
+def conclusion_miksim_product_2():
+    return Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
