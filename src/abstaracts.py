@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class BaseTask(ABC):
+class BaseProduct(ABC):
     """
     Абстракция для класса Product
     """

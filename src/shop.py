@@ -2,7 +2,7 @@ from src.abstaracts import BaseTask
 from src.micsim import MixsimLog
 
 
-class Product(MixsimLog, BaseTask):
+class Product(MixsimLog, BaseProduct):
     """
     Класс для представления продукта в магазин
     """
