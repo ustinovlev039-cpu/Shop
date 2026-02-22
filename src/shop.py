@@ -1,6 +1,10 @@
-from src.abstaracts import BaseTask
+from src.abstaracts import BaseProduct
 from src.micsim import MixsimLog
 
+
+class ZeroQuantityCategory(Exception):
+    """ Исключение при нулевом товаре """
+    pass
 
 class Product(MixsimLog, BaseProduct):
     """
@@ -18,10 +22,14 @@ class Product(MixsimLog, BaseProduct):
         :param quantity:
         """
 
+        if quantity <= 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
+
         self.product_name = product_name
         self.product_description = product_description
         self._price = price
         self.quantity = quantity
+
         super().__init__(product_name, product_description, price, quantity)
 
     def __str__(self):
@@ -103,6 +111,12 @@ class Category:
     @property
     def products(self):
         return "\n".join(str(p) for p in self.__products)
+
+    def middle_price(self):
+        try:
+            return sum(p.price for p in self.__products) / len(self.__products)
+        except ZeroDivisionError as e:
+            return 0
 
 
 class Iterator:

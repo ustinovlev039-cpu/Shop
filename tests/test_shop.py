@@ -1,6 +1,6 @@
 import pytest
 
-from src.shop import Product
+from src.shop import Product, Category
 
 
 def test_price(product1):
@@ -113,3 +113,15 @@ def test_category_grass(category_grass):
 def test_error(category_smartphone):
     with pytest.raises(TypeError):
         category_smartphone.add_product("Не то добавление еееееееее!!!!!")
+
+
+def test_error_product():
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product("Бракованный товар", "Неверное количество", 1000.0, 0)
+
+def test_error_category():
+    category = Category("Пустая категория", "Категория без продуктов", [])
+    assert category.middle_price() == 0
+
+
+
