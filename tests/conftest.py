@@ -150,6 +150,7 @@ def conclusion_miksim_product_2():
 def conclusion_error_product():
     return Product("Бракованный товар", "Неверное количество", 1000.0, 0)
 
+
 @pytest.fixture
 def conclusion_error_category(product1, product2, product3):
     return Category("Смартфоны", "Категория смартфонов", [product1, product2, product3])

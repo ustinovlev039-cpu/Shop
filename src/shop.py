@@ -3,8 +3,10 @@ from src.micsim import MixsimLog
 
 
 class ZeroQuantityCategory(Exception):
-    """ Исключение при нулевом товаре """
+    """Исключение при нулевом товаре"""
+
     pass
+
 
 class Product(MixsimLog, BaseProduct):
     """
