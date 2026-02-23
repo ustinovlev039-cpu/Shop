@@ -144,3 +144,13 @@ def conclusion_miksim_product_1():
 @pytest.fixture
 def conclusion_miksim_product_2():
     return Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+
+
+@pytest.fixture
+def conclusion_error_product():
+    return Product("Бракованный товар", "Неверное количество", 1000.0, 0)
+
+
+@pytest.fixture
+def conclusion_error_category(product1, product2, product3):
+    return Category("Смартфоны", "Категория смартфонов", [product1, product2, product3])
