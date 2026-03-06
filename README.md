@@ -34,6 +34,7 @@
 
 ## Структура проекта
 
+```text
 ├─ src/
 │ ├─ shop.py # Product, Category, Smartphone, LawnGrass
 │ ├─ abstaracts.py # ABC-контракты (BaseTask, BaseOrder)
@@ -44,6 +45,7 @@
 ├─ main.py # пример запуска
 ├─ pyproject.toml
 └─ README.md
+```
 
 --- 
 
